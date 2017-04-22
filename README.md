@@ -5,9 +5,10 @@ The package manages mp3 files fetched from sub-directories of a parent directory
 
 ## Installation
 Run the make command in the project directory.
-'''
+
+```
 make
-'''
+```
 
 ## Features
 * Import all the mp3 files from a directory
