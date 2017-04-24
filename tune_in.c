@@ -7,56 +7,12 @@
 #include <stdlib.h>
 
 #include "./include/tune_in.h"
+#include "./include/print_funs.c"
 
 
 
-void header()
-{
-	printf("\n\t\t\t _________________________________________________________________");
-    printf("\n\t\t\t|                                                                 |");
-    printf("\n\t\t\t|                                                                 |");
-    printf("\n\t\t\t|                                                                 |");
-    printf("\n\t\t\t|                                                                 |");
-    printf("\n\t\t\t|                   MUSIC LIBRARY ORGANISER                       |");
-    printf("\n\t\t\t|                                                                 |");
-    printf("\n\t\t\t|                                                                 |");
-    printf("\n\t\t\t|                                                                 |");
-    printf("\n\t\t\t|_________________________________________________________________|");
-    	
-}
-
-void about()
-{
-	
-	printf("\n\t\t\t _________________________________________________________________");
-	printf("\n\t\t\t|                                                                 |");
-    printf("\n\t\t\t|                                                                 |");
-    printf("\n\t\t\t|    PROGRAMMER            :         S.SURYA PRASATH              |");
-    printf("\n\t\t\t|                                                                 |");
-    printf("\n\t\t\t|    VERSION NUMBER        :               1.0                    |");
-    printf("\n\t\t\t|                                                                 |");
-  	printf("\n\t\t\t|    DESCRIPTION           :      # ORGANISES .MP3 FILES          |");
-  	printf("\n\t\t\t|                                    BASED ON ID3 TAG DATA.       |");
-    printf("\n\t\t\t|                                 # FETCHES FILES FROM            |");
-    printf("\n\t\t\t|                                    GIVEN DIRECTORY AND          |");
-    printf("\n\t\t\t|                                      ITS SUB-DIRECTORIES.       |");
-    printf("\n\t\t\t|                                 # SEARCHES ON THE BASIS         |");
-    printf("\n\t\t\t|                                     OF TITLE ,ALBUM ,           |");
-	printf("\n\t\t\t|                                        ARTIST AND YEAR OF SONG  |");
-	printf("\n\t\t\t|                                 # PLAYS THE SELECTED FILE.      |");
-    printf("\n\t\t\t|                                                                 |");
-    printf("\n\t\t\t|    CONCEPTS USED          :     # ITERATION                     |");
-    printf("\n\t\t\t|                                 # ARRAYS                        |");
-    printf("\n\t\t\t|                                 # FUNCTIONS                     |");
-    printf("\n\t\t\t|                                 # NESTED FUNCTIONS              |");
-    printf("\n\t\t\t|                                 # RECURSIVE FUNTIONS            |");
-    printf("\n\t\t\t|                                 # POINTERS                      |");
-    printf("\n\t\t\t|                                 # FILES                         |");
-    printf("\n\t\t\t|                                 # DIRECTORIES                   |");
-    printf("\n\t\t\t|                                                                 |");
-    printf("\n\t\t\t|                                                                 |");
-    printf("\n\t\t\t|_________________________________________________________________|");
-}
+int cnt=0,strucnt=0,dircnt=0,cnt1=0,assign,flag=0;
+char garbage[50];
 
 
 void player()
@@ -143,10 +99,12 @@ int importer(char path[])
     
     	
    	null= &temppath[strlen(temppath)]; 
-   	printf(" Dir is : %s",temppath);
-    scanf("%d", &l);
+   	
+   	
+   	
    	if ((dp = opendir(temppath)) != NULL) 
    	{ 
+   		
    		if(flag==1)
    			printf("\n\tPlease wait as the files may take some time to import.....");
        	while ((spdir = readdir(dp)) != NULL) 
@@ -956,8 +914,8 @@ int main()
             		
             				assign=cnt;
             		
-    						if((direct[l-1])=='\\')
-    							direct[l-1]='\0';
+    						//if((direct[l-1])=='\\')
+    						direct[l-1]='\0';
     						
     					
             				if(importer(direct)==5)

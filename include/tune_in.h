@@ -23,6 +23,3 @@ void search(int);
 void destroyer();
 void reset();
 
-
-int cnt=0,strucnt=0,dircnt=0,cnt1=0,assign,flag=0;
-char garbage[50];
