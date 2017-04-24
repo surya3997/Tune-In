@@ -1,0 +1,6 @@
+The files imported in the program are stored in this directory.
+
+filebase.txt -> stores paths of the .mp3 files.
+varbase.txt -> stores the counter variable of number of songs imported.
+dirbase.txt -> stores the directories in which the .mp3 are fetched.
+structbase.txt -> stores the struct node of the songs.
