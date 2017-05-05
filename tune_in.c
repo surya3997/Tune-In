@@ -9,6 +9,16 @@
 #include "./include/tune_in.h"
 #include "./include/print_funs.c"
 
+#if defined(_WIN32) || defined(_WIN64)
+        const char* OS = "Windows";
+#else
+#ifdef __linux
+        const char* OS = "Linux";
+#else
+        const char* OS = "Unknown";
+#endif
+#endif
+
 
 int cnt = 0, strucnt = 0,dircnt = 0,cnt1 = 0, assign, flag = 0;
 char garbage[50];
@@ -51,10 +61,20 @@ void player()
 			id3.year[l - 1] = '\0';
     								
 		}
-		//sprintf(playpath, "\"%s\"", id3.dir);
-		sprintf(playpath, "xdg-open \"%s\"", id3.dir);
-		system(playpath);
-		system("clear");
+		
+		
+		if (!strcmp(OS, "Windows"))
+		{
+			sprintf(playpath, "\"%s\"", id3.dir);
+			system(playpath);
+    		system("cls");
+    	}
+    	else if (!strcmp(OS, "Linux"))
+    	{
+    		sprintf(playpath, "xdg-open \"%s\"", id3.dir);
+    		system(playpath);
+    		system("clear");
+    	}
 		return;
 	}
 
@@ -227,7 +247,10 @@ void search(int op1)
 	
 	switch(op1)
 	{
-		case 1:		system("clear");
+		case 1:		if (!strcmp(OS, "Windows"))
+    					system("cls");
+    				else if (!strcmp(OS, "Linux"))
+    					system("clear");
 					printf("\nEnter the Song name\t:\t");
 					fgets(garbage, sizeof(garbage), stdin);
 					fgets(txt, sizeof(txt), stdin);
@@ -337,7 +360,10 @@ void search(int op1)
 					fclose(fpstructbase);
 					break;
 				
-		case 2:		system("clear");
+		case 2:		if (!strcmp(OS, "Windows"))
+    					system("cls");
+					else if (!strcmp(OS, "Linux"))
+						system("clear");
 
 					printf("\nEnter the Artist name\t:\t");
 					fgets(garbage, sizeof(garbage), stdin);
@@ -447,7 +473,10 @@ void search(int op1)
 					fclose(fpstructbase);
 					break;
 					
-		case 3:		system("clear");
+		case 3:		if (!strcmp(OS, "Windows"))
+						system("cls");
+					else if (!strcmp(OS, "Linux"))
+						system("clear");
 
 					printf("\nEnter the Album name\t:\t");
 					fgets(garbage, sizeof(garbage), stdin);
@@ -557,7 +586,10 @@ void search(int op1)
 					fclose(fpstructbase);
 					break;
 				
-		case 4:		system("clear");
+		case 4:		if (!strcmp(OS, "Windows"))
+						system("cls");
+					else if (!strcmp(OS, "Linux"))
+						system("clear");
 
 					printf("\nEnter the Year\t:\t");
 					fgets(garbage, sizeof(garbage), stdin);
@@ -676,7 +708,10 @@ void destroyer()
 {
 	int dest, i, counter = 0;
 	char tempcpy[500];
-	system("clear");
+	if (!strcmp(OS, "Windows"))
+		system("cls");
+	else if (!strcmp(OS, "Linux"))
+		system("clear");
 	printf("\n\tEnter the Importer ID of the song to remove from the database  :  ");
 	scanf("%d", &dest);
 	
@@ -858,15 +893,18 @@ int main()
 	FILE *fpvarbase;
 	FILE *fpstructbase;
 	
-	char direct[500];
-   	int op, op1, i, l, ss;
+	char direct[500], ss;
+   	int op, op1, i, l;
    	
    	initialise();
 	
 	
 	while(1)
     {
-    	system("clear");
+    	if (!strcmp(OS, "Windows"))
+    		system("cls");
+    	else if (!strcmp(OS, "Linux"))
+    		system("clear");
 
 		header();
 		displayMenu();		
@@ -876,7 +914,10 @@ int main()
 		
 		printf("\a");
 			
-		system("clear");
+		if (!strcmp(OS, "Windows"))
+    		system("cls");
+    	else if (!strcmp(OS, "Linux"))
+    		system("clear");
 
 		switch(op)
 		{
@@ -917,7 +958,7 @@ int main()
 
         			importer1();
     	    		fclose(fpdirbase);
-    	    		scanf("%d", &ss);
+    	    		scanf(" %c", &ss);
         	  		break;
               
   			case 2:	
@@ -939,7 +980,7 @@ int main()
 					{
 						printf("\t\t\tNO FILES IMPORTED!");
 					}
-					scanf("%d", &ss);
+					scanf(" %c", &ss);
         		  	break;
 		 
 			case 3:	
@@ -990,30 +1031,30 @@ int main()
 						fclose(fpstructbase);
 					}
 					printf("\n\n\t%d Files\n\n", cnt);
-					scanf("%d", &ss);
+					scanf(" %c", &ss);
 					break;
 			
 			case 4:
 					player();
-					scanf("%d", &ss);
+					scanf(" %c", &ss);
 					break;
 						
 			case 5:
 					destroyer();
-					scanf("%d", &ss);
+					scanf(" %c", &ss);
 					break;
 
 		  
 			case 6:	
 					reset();
-					scanf("%d", &ss);
+					scanf(" %c", &ss);
 					break;
 
 			
 			case 7:
 					header();
 					about();
-					scanf("%d", &ss);
+					scanf(" %c", &ss);
 					break;
  
 			case 8:
