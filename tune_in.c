@@ -251,10 +251,14 @@ void search(int op1)
     					system("cls");
     				else if (!strcmp(OS, "Linux"))
     					system("clear");
+    					
 					printf("\nEnter the Song name\t:\t");
 					fgets(garbage, sizeof(garbage), stdin);
+					
 					fgets(txt, sizeof(txt), stdin);
 					n = strlen(txt);
+					
+					txt[n--] = '\0';
 					f1 = 1;
 					printf("\n");
 					
@@ -264,7 +268,7 @@ void search(int op1)
 						if( (int)txt[i] >= 65 && (int)txt[i] <= 90 )
 							txt[i] = txt[i] + 32;	
 					}
-				
+					
 					for(i1 = 0; i1 < cnt; i1++)
 					{
 						
@@ -339,13 +343,13 @@ void search(int op1)
 						{
 							puts(id3.dir);
 							printf("Impoter id\t:\t%d\n", id3.id);	
-							printf("Song\t:\t");
+							printf("Song\t\t:\t");
 							puts(id3.title);
-							printf("Album\t:\t");
+							printf("Album\t\t:\t");
 							puts(id3.album);
-							printf("Artist\t:\t");
+							printf("Artist\t\t:\t");
 							puts(id3.artist);
-							printf("Year\t:\t");
+							printf("Year\t\t:\t");
 							puts(id3.year);
 							printf("\n");
 							f1 = 0;
@@ -369,6 +373,9 @@ void search(int op1)
 					fgets(garbage, sizeof(garbage), stdin);
 					fgets(txt, sizeof(txt), stdin);
 					n = strlen(txt);
+					
+					txt[n--] = '\0';
+					
 					f1 = 1;
 					printf("\n");
 					
@@ -452,13 +459,13 @@ void search(int op1)
 						{						
 							puts(id3.dir);
 							printf("Impoter id\t:\t%d\n", id3.id);	
-							printf("Song\t:\t");
+							printf("Song\t\t:\t");
 							puts(id3.title);
-							printf("Album\t:\t");
+							printf("Album\t\t:\t");
 							puts(id3.album);
-							printf("Artist\t:\t");
+							printf("Artist\t\t:\t");
 							puts(id3.artist);
-							printf("Year\t:\t");
+							printf("Year\t\t:\t");
 							puts(id3.year);
 							printf("\n");
 							f1 = 0;
@@ -482,6 +489,9 @@ void search(int op1)
 					fgets(garbage, sizeof(garbage), stdin);
 					fgets(txt, sizeof(txt), stdin);
 					n = strlen(txt);
+					
+					txt[n--] = '\0';
+					
 					f1 = 1;
 					printf("\n");
 					
@@ -565,13 +575,13 @@ void search(int op1)
 						{
 							puts(id3.dir);
 							printf("Impoter id\t:\t%d\n", id3.id);	
-							printf("Song\t:\t");
+							printf("Song\t\t:\t");
 							puts(id3.title);
-							printf("Album\t:\t");
+							printf("Album\t\t:\t");
 							puts(id3.album);
-							printf("Artist\t:\t");
+							printf("Artist\t\t:\t");
 							puts(id3.artist);
-							printf("Year\t:\t");
+							printf("Year\t\t:\t");
 							puts(id3.year);
 							printf("\n");
 							f1 = 0;
@@ -591,10 +601,13 @@ void search(int op1)
 					else if (!strcmp(OS, "Linux"))
 						system("clear");
 
-					printf("\nEnter the Year\t:\t");
+					printf("\nEnter the Year\t\t:\t");
 					fgets(garbage, sizeof(garbage), stdin);
 					fgets(txt, sizeof(txt), stdin);
 					n = strlen(txt);
+					
+					txt[n--] = '\0';
+					
 					f1 = 1;
 					printf("\n");
 		
@@ -677,13 +690,13 @@ void search(int op1)
 						{
 							puts(id3.dir);
 							printf("Impoter id\t:\t%d\n",id3.id);	
-							printf("Song\t:\t");
+							printf("Song\t\t:\t");
 							puts(id3.title);
-							printf("Album\t:\t");
+							printf("Album\t\t:\t");
 							puts(id3.album);
-							printf("Artist\t:\t");
+							printf("Artist\t\t:\t");
 							puts(id3.artist);
-							printf("Year\t:\t");
+							printf("Year\t\t:\t");
 							puts(id3.year);
 							printf("\n");
 							f1 = 0;						
