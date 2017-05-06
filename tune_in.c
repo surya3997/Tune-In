@@ -10,12 +10,12 @@
 #include "./include/print_funs.c"
 
 #if defined(_WIN32) || defined(_WIN64)
-        const char* OS = "Windows";
+	const char* OS = "Windows";
 #else
 #ifdef __linux
-        const char* OS = "Linux";
+	const char* OS = "Linux";
 #else
-        const char* OS = "Unknown";
+	const char* OS = "Unknown";
 #endif
 #endif
 
@@ -59,7 +59,7 @@ void player()
 			fgets(id3.year, 200, fpstructbase);
 			l = strlen(id3.year);
 			id3.year[l - 1] = '\0';
-    								
+									
 		}
 		
 		
@@ -67,14 +67,14 @@ void player()
 		{
 			sprintf(playpath, "\"%s\"", id3.dir);
 			system(playpath);
-    		system("cls");
-    	}
-    	else if (!strcmp(OS, "Linux"))
-    	{
-    		sprintf(playpath, "xdg-open \"%s\"", id3.dir);
-    		system(playpath);
-    		system("clear");
-    	}
+			system("cls");
+		}
+		else if (!strcmp(OS, "Linux"))
+		{
+			sprintf(playpath, "xdg-open \"%s\"", id3.dir);
+			system(playpath);
+			system("clear");
+		}
 		return;
 	}
 
@@ -86,7 +86,7 @@ void player()
 
 
 void initialise()
-{    
+{	
 	FILE *fpvarbase;
 		
 	if(fpvarbase = fopen("./files/varbase.txt", "r"))
@@ -107,13 +107,13 @@ int importer(char path[])
 {
 	FILE *fpfilebase;
 	fpfilebase = fopen("./files/filebase.txt", "a+");
-    char temppath[500] , *null, tester[500];
+	char temppath[500] , *null, tester[500];
    	int l;
    	DIR *dp; 
    	struct dirent *spdir; 
    	strcpy(temppath, path);
    	flag++; 
-    
+	
    	null = &temppath[strlen(temppath)];
    	dp = opendir(temppath); 
    	
@@ -121,71 +121,70 @@ int importer(char path[])
    	{ 	
    		if(flag == 1)
    			printf("\n\tPlease wait as the files may take some time to import.....");
-       	while ((spdir = readdir(dp)) != NULL) 
+		while ((spdir = readdir(dp)) != NULL) 
 		{ 
-            if ((strcmp(spdir->d_name, ".") != 0) && (strcmp(spdir->d_name, "..") != 0)) 
-            { 
-                strcpy(tester, spdir->d_name);
-            	l = strlen(tester);
-                if(tester[l - 1] == '3')
-                {
-		            if((tester[l - 2] == 'p' || tester[l - 2] == 'P'))
-		            {
-				        if((tester[l - 3] == 'm' || tester[l - 3] == 'M'))
-				       	{
+			if ((strcmp(spdir->d_name, ".") != 0) && (strcmp(spdir->d_name, "..") != 0)) 
+			{ 
+				strcpy(tester, spdir->d_name);
+				l = strlen(tester);
+				if(tester[l - 1] == '3')
+				{
+					if((tester[l - 2] == 'p' || tester[l - 2] == 'P'))
+					{
+						if((tester[l - 3] == 'm' || tester[l - 3] == 'M'))
+						{
 							fprintf(fpfilebase, "%s/%s\n", temppath, spdir->d_name);
-				            cnt++;
-				            cnt1++;
-				        }
-		            }
-                }
-                				
+							cnt++;
+							cnt1++;
+						}
+					}
+				}
+								
 				sprintf(null, "/%s", spdir->d_name); 
 
-                if (importer(temppath)) 
-                { 
-                	closedir(dp); 
-                    return 1; 
-               	}
-				    
-                *null = '\0'; 
-            } 
-        }
+				if (importer(temppath)) 
+				{ 
+					closedir(dp); 
+					return 1;
+				}
+					
+				*null = '\0'; 
+			} 
+		}
 	}
 
-    else if(flag == 1)
-       	return 5;
-         
-   	closedir(dp);
-   	fclose(fpfilebase);
-   	return 0;
-       
+	else if(flag == 1)
+		return 5;
+		 
+	closedir(dp);
+	fclose(fpfilebase);
+	return 0;
 }
  
-       
-                   //IMPORTING FROM FILE TO A STRUCT
+	   
+				   //IMPORTING FROM FILE TO A STRUCT
 void importer1()
 {
 	int i;
 	FILE *fpfilebase;
 	char trans[500];
-    fpfilebase = fopen("./files/filebase.txt", "r");
-    printf("\n\n");
-    
-    for(i = 0; i < assign; i++)
-    {
-    	fgets(trans, 500, fpfilebase);
+	fpfilebase = fopen("./files/filebase.txt", "r");
+	printf("\n\n");
+	
+	for(i = 0; i < assign; i++)
+	{
+		fgets(trans, 500, fpfilebase);
 	}
-    
-    for(i = assign; i < cnt; i++)
-    {    	
-        fgets(trans, 500, fpfilebase);
-        trans[strlen(trans) - 1] = '\0';
-        strcpy(id3.dir, trans);
-        getid3(trans);
-        strucnt++;
-    }    
-    fclose(fpfilebase);
+	
+	for(i = assign; i < cnt; i++)
+	{		
+		fgets(trans, 500, fpfilebase);
+		trans[strlen(trans) - 1] = '\0';
+		strcpy(id3.dir, trans);
+		getid3(trans);
+		strucnt++;
+	}
+	fclose(fpfilebase);
 }
 
 int getid3(char path[500])
@@ -248,10 +247,10 @@ void search(int op1)
 	switch(op1)
 	{
 		case 1:		if (!strcmp(OS, "Windows"))
-    					system("cls");
-    				else if (!strcmp(OS, "Linux"))
-    					system("clear");
-    					
+						system("cls");
+					else if (!strcmp(OS, "Linux"))
+						system("clear");
+						
 					printf("\nEnter the Song name\t:\t");
 					fgets(garbage, sizeof(garbage), stdin);
 					
@@ -365,7 +364,7 @@ void search(int op1)
 					break;
 				
 		case 2:		if (!strcmp(OS, "Windows"))
-    					system("cls");
+						system("cls");
 					else if (!strcmp(OS, "Linux"))
 						system("clear");
 
@@ -744,53 +743,52 @@ void destroyer()
 		fptemp = fopen("./files/temp.txt","w");
 		for(i = 1; i <= cnt; i++)
 		{
-				if(dest != i)
-				{
-					counter++;
-				}
-				
-				fgets(tempcpy, 200, fpstructbase);
-				if(dest != i)
-				{
-					fprintf(fptemp, "%d\n", counter);
-				}
-				
-				fgets(tempcpy, 500, fpstructbase);
-				if(dest != i)
-				{
-					fputs(tempcpy, fptemp);
-				}
-				
-				fgets(tempcpy, 500, fpstructbase);
-				if(dest != i)
-				{
-					fputs(tempcpy, fptemp);
-				}
-
-				fgets(tempcpy, 500, fpstructbase);
-				if(dest != i)
-				{
-					fputs(tempcpy, fptemp);
-				}
-
-				fgets(tempcpy, 500, fpstructbase);
-				if(dest != i)
-				{
-					fputs(tempcpy, fptemp);
-				}
-
-				fgets(tempcpy, 500, fpstructbase);
-				if(dest != i)
-				{
-					fputs(tempcpy, fptemp);
-				}
-
+			if(dest != i)
+			{
+				counter++;
 			}
+			
+			fgets(tempcpy, 200, fpstructbase);
+			if(dest != i)
+			{
+				fprintf(fptemp, "%d\n", counter);
+			}
+			
+			fgets(tempcpy, 500, fpstructbase);
+			if(dest != i)
+			{
+				fputs(tempcpy, fptemp);
+			}
+			
+			fgets(tempcpy, 500, fpstructbase);
+			if(dest != i)
+			{
+				fputs(tempcpy, fptemp);
+			}
+
+			fgets(tempcpy, 500, fpstructbase);
+			if(dest != i)
+			{
+				fputs(tempcpy, fptemp);
+			}
+
+			fgets(tempcpy, 500, fpstructbase);
+			if(dest != i)
+			{
+				fputs(tempcpy, fptemp);
+			}
+
+			fgets(tempcpy, 500, fpstructbase);
+			if(dest != i)
+			{
+				fputs(tempcpy, fptemp);
+			}
+
+		}
 		
 		fclose(fptemp);
 		fclose(fpstructbase);
 		
-
 		fpstructbase = fopen("./files/structbase.txt", "w");
 		fptemp = fopen("./files/temp.txt", "r");
 		for(i = 1; i <= cnt - 1; i++)
@@ -877,8 +875,7 @@ void reset()
 	strcpy(id3.album, "\0");
 	strcpy(id3.artist, "\0");
 	strcpy(id3.year, "\0");
-		
-
+	
 	cnt = strucnt = dircnt = assign = 0;
 	printf("\n\tDirectory Log cleared.... Import new Directory...");
 							
@@ -905,103 +902,99 @@ int main()
 	FILE *fpdirbase;
 	FILE *fpvarbase;
 	FILE *fpstructbase;
-	
+		
 	char direct[500], ss;
-   	int op, op1, i, l;
-   	
-   	initialise();
-	
+	int op, op1, i, l;
+	   	
+	initialise();
 	
 	while(1)
-    {
-    	if (!strcmp(OS, "Windows"))
-    		system("cls");
-    	else if (!strcmp(OS, "Linux"))
-    		system("clear");
-
+	{
+		if (!strcmp(OS, "Windows"))
+			system("cls");
+		else if (!strcmp(OS, "Linux"))
+			system("clear");
+		
 		header();
-		displayMenu();		
- 		
+		displayMenu();
+				
 		fflush(stdin);
 		scanf("%d", &op);
 		
 		printf("\a");
 			
 		if (!strcmp(OS, "Windows"))
-    		system("cls");
-    	else if (!strcmp(OS, "Linux"))
-    		system("clear");
-
+			system("cls");
+		else if (!strcmp(OS, "Linux"))
+			system("clear");
+		
 		switch(op)
 		{
 			case 1: 	
-    				printf("\n\n\tEnter the Directory of the music files\t:\t");
-    				fgets(garbage, sizeof(garbage), stdin);
+					printf("\n\n\tEnter the Directory of the music files\t:\t");
+					fgets(garbage, sizeof(garbage), stdin);
 					fgets(direct, sizeof(direct), stdin);
-    				l = strlen(direct);
-    				
-    				fpdirbase = fopen("./files/dirbase.txt", "a+");
-    		
-    		
-    				assign = cnt;
-    		
-					//if((direct[l-1])=='\\')
-					direct[l-1] = '\0';
+					l = strlen(direct);
 					
-				
-    				if(importer(direct) == 5)
-            				printf("\n\n\tDirectory not found...\n");
-    				else 
-    				{
-        				printf("\n\n\tAll .mp3 files in the directory and ");
-        				printf("sub-directories were imported successfully.");
-      		  			printf("\n\tNumber of files imported : %d", cnt1);
-        				printf("\n\tTotal files imported in database : %d", cnt);
-        				flag = 0;
-        				cnt1 = 0;
-        				
-        				fpvarbase = fopen("./files/varbase.txt", "w");
-        				fprintf(fpvarbase, "%d\n%d\n%d", cnt, strucnt, dircnt);
-        				fclose(fpvarbase);
-        				
-        				fputs(direct, fpdirbase);
-        				fprintf(fpdirbase, "\n");
-        				dircnt++;
-    				}
-
-        			importer1();
-    	    		fclose(fpdirbase);
-    	    		scanf(" %c", &ss);
-        	  		break;
-              
-  			case 2:	
-
-  					if(cnt != 0)
+					fpdirbase = fopen("./files/dirbase.txt", "a+");
+					
+					assign = cnt;
+					
+					if(direct[l - 1] == '\\')
+						direct[l - 1] = '\0';
+					
+					if(importer(direct) == 5)
+						printf("\n\n\tDirectory not found...\n");
+					else 
 					{
-    	    	  		printf("\n\n\tSearch criteria :");
-	      				printf("\n\t1.Song");
-    		  			printf("\n\t2.Artist");
-      					printf("\n\t3.Album");
-    	  				printf("\n\t4.Year");
-    	  				printf("\n\n\tEnter your option\t:\t");
-    	  				fflush(stdin);
-    	  				scanf("%d", &op1);
-    	  				search(op1);
-    	  				printf("\a");
-    				}
+						printf("\n\n\tAll .mp3 files in the directory and ");
+						printf("sub-directories were imported successfully.");
+						printf("\n\tNumber of files imported : %d", cnt1);
+						printf("\n\tTotal files imported in database : %d", cnt);
+						flag = 0;
+						cnt1 = 0;
+						
+						fpvarbase = fopen("./files/varbase.txt", "w");
+						fprintf(fpvarbase, "%d\n%d\n%d", cnt, strucnt, dircnt);
+						fclose(fpvarbase);
+						
+						fputs(direct, fpdirbase);
+						fprintf(fpdirbase, "\n");
+						dircnt++;
+					}
+
+					importer1();
+					fclose(fpdirbase);
+					scanf(" %c", &ss);
+					break;
+			  
+			case 2:	
+
+					if(cnt != 0)
+					{
+						printf("\n\n\tSearch criteria :");
+						printf("\n\t1.Song");
+						printf("\n\t2.Artist");
+						printf("\n\t3.Album");
+		  				printf("\n\t4.Year");
+		  				printf("\n\n\tEnter your option\t:\t");
+		  				fflush(stdin);
+		  				scanf("%d", &op1);
+		  				search(op1);
+		  				printf("\a");
+		  			}
 					else
 					{
 						printf("\t\t\tNO FILES IMPORTED!");
 					}
 					scanf(" %c", &ss);
-        		  	break;
-		 
-			case 3:	
+					break;
+					
+			case 3:
 					if(cnt == 0)
 						printf("\t\t\tNO FILES IMPORTED!");
 					else
 					{
-						
 						fpstructbase = fopen("./files/structbase.txt", "r");
 						
 						printf("\n");
@@ -1010,27 +1003,26 @@ int main()
 							fgets(garbage, 200, fpstructbase);
 							l = strlen(garbage);
 							garbage[l - 1] = '\0';
-		
+							
 							fgets(id3.dir, 200, fpstructbase);
 							l = strlen(id3.dir);
 							id3.dir[l - 1] = '\0';
-		
+							
 							fgets(id3.title, 200, fpstructbase);
 							l = strlen(id3.title);
 							id3.title[l - 1] = '\0';
-		
+							
 							fgets(id3.artist, 200, fpstructbase);
 							l = strlen(id3.artist);
 							id3.artist[l - 1] = '\0';
-	
+							
 							fgets(id3.album, 200, fpstructbase);
 							l = strlen(id3.album);
 							id3.album[l - 1] = '\0';
-	
+							
 							fgets(id3.year, 200, fpstructbase);
 							l = strlen(id3.year);
 							id3.year[l - 1] = '\0';
-							
 							
 							printf("%d\n", i+1);
 							printf("%s\n", id3.dir);
@@ -1039,14 +1031,14 @@ int main()
 							printf("%s\n", id3.artist);
 							printf("%s\n", id3.year);
 							printf("\n");
-						
+							
 						}
 						fclose(fpstructbase);
 					}
 					printf("\n\n\t%d Files\n\n", cnt);
 					scanf(" %c", &ss);
 					break;
-			
+					
 			case 4:
 					player();
 					scanf(" %c", &ss);
@@ -1056,7 +1048,6 @@ int main()
 					destroyer();
 					scanf(" %c", &ss);
 					break;
-
 		  
 			case 6:	
 					reset();
@@ -1069,7 +1060,7 @@ int main()
 					about();
 					scanf(" %c", &ss);
 					break;
- 
+					
 			case 8:
 					printf("\n\n\t\t\tPROGRAM TERMINATES");
 					fpvarbase = fopen("./files/varbase.txt", "w");
@@ -1083,9 +1074,9 @@ int main()
 
 		}
 	
-    	
+		
 	}
 
-  	return 0;
+	return 0;
 }
 
